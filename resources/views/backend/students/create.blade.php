@@ -347,17 +347,19 @@
                                     <form class="forms-sample" action="{{ route('students.store') }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
-                                        {{-- bootstrap green alert color --}}
+                                        {{-- Bootstrap green alert color --}}
                                         @if (session('success'))
                                             <div class="alert alert-success">
                                                 {{ session('success') }}
                                             </div>
                                         @endif
+
                                         <div class="form-group">
                                             <label for="studentInputName">Student Name</label>
                                             <input type="text" class="form-control" id="studentInputName"
                                                 name="name" placeholder="Student Name" required>
                                         </div>
+
                                         <div class="form-group">
                                             <label for="studentInputEmail">Email</label>
                                             <input type="email" class="form-control" id="studentInputEmail"
@@ -365,24 +367,11 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="studentInputcourse">Course</label>
-                                            <select class="form-control" name="course_id" id="studentInputcourse"
-                                                required>
-                                                <option value="">Select a Course</option>
-                                                @foreach ($courses as $course)
-                                                    <option value="{{ $course->id }}"
-                                                        {{ old('course_id') == $course->id ? 'selected' : '' }}>
-                                                        {{ $course->id }} - {{ $course->course_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group">
                                             <label for="studentInputDob">Date of Birth</label>
                                             <input type="date" class="form-control" id="studentInputDob"
                                                 name="dob" required>
                                         </div>
+
                                         <div class="form-group">
                                             <label for="studentInputPhone">Phone Number</label>
                                             <input type="text" class="form-control" id="studentInputPhone"
@@ -399,6 +388,8 @@
                                         <button type="button" class="btn btn-light"
                                             onclick="window.location='{{ route('students.create') }}'">Cancel</button>
                                     </form>
+
+
 
 
                                 </div>

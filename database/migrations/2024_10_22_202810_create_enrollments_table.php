@@ -11,9 +11,10 @@ class CreateEnrollmentsTable extends Migration
             $table->id();
             $table->string('student_name');
             $table->string('email')->unique();
-            $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->foreignId('student_id')->nullable()->constrained()->onDelete('cascade');
+
             $table->date('enrollment_date');
-            $table->enum('status', ['active', 'completed', 'inactive']); /
+            $table->enum('status', ['active', 'completed', 'inactive']);
             $table->string('grade')->nullable();
             $table->date('dob');
             $table->string('phone');

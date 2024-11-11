@@ -78,11 +78,11 @@ use App\Http\Controllers\SettingsController;
     Route::get('/welcome', [HomeController::class, 'index'])->name('welcome');
 
 
-//    Login and  Register
-    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-    Route::post('/register', [RegisteredUserController::class, 'store']);
-    Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-    Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+// //    Login and  Register
+//     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+//     Route::post('/register', [RegisteredUserController::class, 'store']);
+//     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+//     Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 
 //setting routes
     Route::middleware('auth')->get('/settings', [SettingsController::class, 'index'])->name('settings.index');

@@ -274,9 +274,9 @@
                                     <!-- Edit Form -->
                                     <form action="{{ route('students.update', $student->id) }}" method="POST">
                                         @csrf
-                                        @method('PUT')
+                                        @method('PUT') <!-- Since update uses PUT/PATCH -->
 
-
+                                        <!-- Name Field -->
                                         <div class="form-group">
                                             <label for="name">Name</label>
                                             <input type="text" name="name" id="name" class="form-control"

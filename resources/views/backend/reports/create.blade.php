@@ -239,7 +239,7 @@
                              </div>
 
                              <!-- backend/reports/create.blade.php -->
-                             <form action="{{ route('reports.store') }}" method="POST">
+                             {{-- <form action="{{ route('reports.store') }}" method="POST">
                                  @csrf
 
                                  <!-- Report Type -->
@@ -283,7 +283,66 @@
 
                                  <!-- Submit Button -->
                                  <button type="submit" class="btn btn-primary">Generate Report</button>
+                             </form> --}}
+
+                             <form class="forms-sample" action="{{ route('students.store') }}" method="POST"
+                                 enctype="multipart/form-data">
+                                 @csrf
+
+                                 @if (session('success'))
+                                     <div class="alert alert-success">
+                                         {{ session('success') }}
+                                     </div>
+                                 @endif
+
+                                 <div class="form-group">
+                                     <label for="studentInputName">Student Name</label>
+                                     <input type="text" class="form-control" id="studentInputName" name="name"
+                                         placeholder="Student Name" required>
+                                 </div>
+
+                                 <div class="form-group">
+                                     <label for="studentInputEmail">Email</label>
+                                     <input type="email" class="form-control" id="studentInputEmail" name="email"
+                                         placeholder="Email" required>
+                                 </div>
+
+                                 <div class="form-group">
+                                     <label for="studentInputcourse">Course</label>
+                                     <select class="form-control" name="courses[]" id="studentInputcourse" required>
+                                         <option value="">Select a Course</option>
+                                         @foreach ($courses as $course)
+                                             <option value="{{ $course->id }}"
+                                                 {{ old('courses') && in_array($course->id, old('courses')) ? 'selected' : '' }}>
+                                                 {{ $course->id }} - {{ $course->course_name }}
+                                             </option>
+                                         @endforeach
+                                     </select>
+                                 </div>
+
+                                 <div class="form-group">
+                                     <label for="studentInputDob">Date of Birth</label>
+                                     <input type="date" class="form-control" id="studentInputDob" name="dob"
+                                         required>
+                                 </div>
+
+                                 <div class="form-group">
+                                     <label for="studentInputPhone">Phone Number</label>
+                                     <input type="text" class="form-control" id="studentInputPhone" name="phone"
+                                         required>
+                                 </div>
+
+                                 <div class="form-group">
+                                     <label for="profile_image_url">Profile Image:</label>
+                                     <input type="file" class="form-control" name="profile_image_url"
+                                         accept="image/*">
+                                 </div>
+
+                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                 <button type="button" class="btn btn-light"
+                                     onclick="window.location='{{ route('students.create') }}'">Cancel</button>
                              </form>
+
 
 
                              <script>

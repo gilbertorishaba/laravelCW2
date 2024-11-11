@@ -1,54 +1,53 @@
 @extends('backend.layouts.main')
 @section('content')
     <style>
-        /* Customizing the body background and form styles */
         body {
             background-color: white;
-            /* White background for the whole page */
+
         }
 
         .card {
             background-color: white;
             border: 1px solid #007bff;
-            /* Blue border around the form card */
+
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            /* Soft shadow for depth */
+
         }
 
         .card-title {
             color: #007bff;
-            /* Blue title color */
+
         }
 
         .btn-primary {
             background-color: #007bff;
-            /* Blue button */
+
             border-color: #007bff;
         }
 
         .btn-light {
             background-color: #f8f9fa;
-            /* Lighter background for the cancel button */
+
             color: #007bff;
-            /* Blue text for the cancel button */
+
         }
 
         .form-control {
             border: 1px solid #007bff;
-            /* Blue borders for input fields */
+
             background-color: #f0f9ff;
-            /* Light blue background for the input fields */
+
             color: #333;
         }
 
         .form-control:focus {
             box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-            /* Blue shadow on focus */
+
         }
 
         .page-title {
             color: #007bff;
-            /* Blue color for page title */
+
         }
     </style>
 
