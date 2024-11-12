@@ -1,5 +1,66 @@
 @extends('backend.layouts.main')
 @section('content')
+    {{-- adding gcharts to my code --}}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawCharts);
+
+        function drawCharts() {
+            drawBarChart();
+            drawPieChart();
+        }
+
+        // Bar chart for total data
+        function drawBarChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Category', 'Total'],
+                ['Students', {{ $students }}],
+                ['Enrollments', {{ $enrollment }}],
+                ['Courses', {{ $courses }}],
+                ['Reports', {{ $reports }}]
+            ]);
+
+            var options = {
+                title: 'Total Data Overview',
+                chartArea: {
+                    width: '50%'
+                },
+                hAxis: {
+                    title: 'Total Number',
+                    minValue: 0
+                },
+                vAxis: {
+                    title: 'Category'
+                }
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById('bar_chart'));
+            chart.draw(data, options);
+        }
+
+        // Pie chart for total data distribution
+        function drawPieChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Category', 'Total'],
+                ['Students', {{ $students }}],
+                ['Enrollment', {{ $enrollment }}],
+                ['Courses', {{ $courses }}],
+                ['Reports', {{ $reports }}]
+            ]);
+
+            var options = {
+                title: 'Distribution of Data',
+                pieHole: 0.4,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
+            chart.draw(data, options);
+        }
+    </script>
+
     <div class="container-scroller">
 
         <!-- partial:partials/_navbar.html -->
@@ -210,88 +271,77 @@
                             <div class="card card-statistics">
                                 <div class="card-body">
                                     <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+                                        <!-- Total Students -->
                                         <div class="statistics-item">
-                                            <p>
-                                                <i class="icon-sm fa fa-user mr-2"></i>
-                                                New students
-                                            </p>
-                                            <h2>500</h2>
-                                            <label class="badge badge-outline-success badge-pill">15% increase</label>
+                                            <p><i class="icon-sm fa fa-user mr-2"></i> Total Students</p>
+                                            <h2>{{ $students }}</h2>
                                         </div>
+
+                                        <!-- Total Enrollments -->
                                         <div class="statistics-item">
-                                            <p>
-                                                <i class="icon-sm fas fa-hourglass-half mr-2"></i>
-                                                Registered Students
-                                            </p>
-                                            <h2>450</h2>
-                                            <label class="badge badge-outline-danger badge-pill">15% decrease</label>
+                                            <p><i class="icon-sm fas fa-check-circle mr-2"></i> Total Enrollments</p>
+                                            <h2>{{ $enrollment }}</h2>
                                         </div>
+
+                                        <!-- Total Courses -->
                                         <div class="statistics-item">
-                                            <p>
-                                                <i class="icon-sm fas fa-cloud-download-alt mr-2"></i>
-                                                Subjects
-                                            </p>
-                                            <h2>15</h2>
-                                            <label class="badge badge-outline-success badge-pill">12% increase</label>
+                                            <p><i class="icon-sm fas fa-book mr-2"></i> Total Courses</p>
+                                            <h2>{{ $courses }}</h2>
                                         </div>
+
+                                        <!-- Total Reports -->
                                         <div class="statistics-item">
-                                            <p>
-                                                <i class="icon-sm fas fa-check-circle mr-2"></i>
-                                                Enrollment
-                                            </p>
-                                            <h2>470</h2>
-                                            <label class="badge badge-outline-success badge-pill">57% increase</label>
-                                        </div>
-                                        <div class="statistics-item">
-                                            <p>
-                                                <i class="icon-sm fas fa-chart-line mr-2"></i>
-                                                class
-                                            </p>
-                                            <h2>50</h2>
-                                            <label class="badge badge-outline-success badge-pill">10% increase</label>
-                                        </div>
-                                        <div class="statistics-item">
-                                            <p>
-                                                <i class="icon-sm fas fa-circle-notch mr-2"></i>
-                                                Teachers
-                                            </p>
-                                            <h2>30</h2>
-                                            <label class="badge badge-outline-danger badge-pill">16% decrease</label>
+                                            <p><i class="icon-sm fas fa-file-alt mr-2"></i> Total Reports</p>
+                                            <h2>{{ $reports }}</h2>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <i class="fas fa-gift"></i>
-                                        Registration
-                                    </h4>
-                                    <canvas id="orders-chart"></canvas>
-                                    <div id="orders-chart-legend" class="orders-chart-legend"></div>
+
+                </div>
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <div class="page-header">
+                            <h3 class="page-title">Google Charts</h3>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Charts</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Google charts</li>
+                                </ol>
+                            </nav>
+                        </div>
+
+                        <div class="row">
+                            <!-- Bar Chart -->
+                            <div class="col-lg-6 grid-margin stretch-card">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Total Data (Bar Chart)</h4>
+                                        <div id="bar_chart" style="width: 100%; height: 400px;"></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <i class="fas fa-chart-line"></i>
-                                        Registered Students
-                                    </h4>
-                                    <h2 class="mb-5">200 <span class="text-muted h4 font-weight-normal">Students</span>
-                                    </h2>
-                                    <canvas id="sales-chart"></canvas>
+
+                            <!-- Pie Chart -->
+                            <div class="col-lg-6 grid-margin stretch-card">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Data Distribution (Pie Chart)</h4>
+                                        <div id="pie_chart" style="width: 100%; height: 400px;"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- content-wrapper ends -->
 
+                    <!-- Footer -->
+
+                    <!-- partial -->
                 </div>
+
 
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->

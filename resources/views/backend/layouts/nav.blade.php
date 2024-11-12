@@ -32,24 +32,17 @@
                     <span class="dropdown-toggle btn btn-outline-dark" id="languageDropdown"
                         data-toggle="dropdown">English</span>
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="languageDropdown">
-                        <a class="dropdown-item font-weight-medium" href="#">
-                            French
-                        </a>
+                        <a class="dropdown-item font-weight-medium" href="#">French</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item font-weight-medium" href="#">
-                            Espanol
-                        </a>
+                        <a class="dropdown-item font-weight-medium" href="#">Espanol</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item font-weight-medium" href="#">
-                            Latin
-                        </a>
+                        <a class="dropdown-item font-weight-medium" href="#">Latin</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item font-weight-medium" href="#">
-                            Arabic
-                        </a>
+                        <a class="dropdown-item font-weight-medium" href="#">Arabic</a>
                     </div>
                 </div>
             </li>
+
             <!-- Notification Dropdown -->
             <li class="nav-item dropdown">
                 <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
@@ -60,8 +53,7 @@
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
                     aria-labelledby="notificationDropdown">
                     <a class="dropdown-item">
-                        <p class="mb-0 font-weight-normal float-left">You have 16 new notifications
-                        </p>
+                        <p class="mb-0 font-weight-normal float-left">You have 16 new notifications</p>
                         <span class="badge badge-pill badge-warning float-right">View all</span>
                     </a>
                     <div class="dropdown-divider"></div>
@@ -73,9 +65,7 @@
                         </div>
                         <div class="preview-item-content">
                             <h6 class="preview-subject font-weight-medium">Application Error</h6>
-                            <p class="font-weight-light small-text">
-                                Just now
-                            </p>
+                            <p class="font-weight-light small-text">Just now</p>
                         </div>
                     </a>
                     <div class="dropdown-divider"></div>
@@ -86,12 +76,9 @@
                             </div>
                         </div>
                         <div class="preview-item-content">
-                            <a href="{{ route('settings.index') }}" class="list-group-item list-group-item-action">
-                                Settings
-                            </a>
-                            <p class="font-weight-light small-text">
-                                Private message
-                            </p>
+                            <a href="{{ route('settings.index') }}"
+                                class="list-group-item list-group-item-action">Settings</a>
+                            <p class="font-weight-light small-text">Private message</p>
                         </div>
                     </a>
                     <div class="dropdown-divider"></div>
@@ -103,13 +90,12 @@
                         </div>
                         <div class="preview-item-content">
                             <h6 class="preview-subject font-weight-medium">New user registration</h6>
-                            <p class="font-weight-light small-text">
-                                2 days ago
-                            </p>
+                            <p class="font-weight-light small-text">2 days ago</p>
                         </div>
                     </a>
                 </div>
             </li>
+
             <!-- Message Dropdown -->
             <li class="nav-item dropdown">
                 <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#"
@@ -120,8 +106,7 @@
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
                     aria-labelledby="messageDropdown">
                     <div class="dropdown-item">
-                        <p class="mb-0 font-weight-normal float-left">You have 7 unread mails
-                        </p>
+                        <p class="mb-0 font-weight-normal float-left">You have 7 unread mails</p>
                         <span class="badge badge-info badge-pill float-right">View all</span>
                     </div>
                     <div class="dropdown-divider"></div>
@@ -133,9 +118,7 @@
                             <h6 class="preview-subject ellipsis font-weight-medium">David Grey
                                 <span class="float-right font-weight-light small-text">1 Minute ago</span>
                             </h6>
-                            <p class="font-weight-light small-text">
-                                The meeting is cancelled
-                            </p>
+                            <p class="font-weight-light small-text">The meeting is cancelled</p>
                         </div>
                     </a>
                     <div class="dropdown-divider"></div>
@@ -147,9 +130,7 @@
                             <h6 class="preview-subject ellipsis font-weight-medium">Tim Cook
                                 <span class="float-right font-weight-light small-text">15 Minutes ago</span>
                             </h6>
-                            <p class="font-weight-light small-text">
-                                New product launch
-                            </p>
+                            <p class="font-weight-light small-text">New product launch</p>
                         </div>
                     </a>
                     <div class="dropdown-divider"></div>
@@ -161,13 +142,12 @@
                             <h6 class="preview-subject ellipsis font-weight-medium"> Johnson
                                 <span class="float-right font-weight-light small-text">18 Minutes ago</span>
                             </h6>
-                            <p class="font-weight-light small-text">
-                                Upcoming board meeting
-                            </p>
+                            <p class="font-weight-light small-text">Upcoming board meeting</p>
                         </div>
                     </a>
                 </div>
             </li>
+
             <!-- Profile Dropdown -->
             <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
@@ -175,16 +155,19 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                     <a class="dropdown-item">
-                        <i class="fas fa-cog text-primary"></i>
-                        Settings
+                        <i class="fas fa-cog text-primary"></i> Settings
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item">
-                        <i class="fas fa-power-off text-primary"></i>
-                        Logout
-                    </a>
+
+                    {{-- form --}}
+                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                        @csrf <!-- CSRF token for security -->
+                        <button type="submit">Logout</button>
+                    </form>
+
                 </div>
             </li>
+
             <!-- Settings Icon for smaller screens -->
             <li class="nav-item d-lg-none">
                 <a class="nav-link" href="#" data-toggle="dropdown" id="settingsDropdown">
@@ -192,14 +175,17 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="settingsDropdown">
                     <a class="dropdown-item">
-                        <i class="fas fa-cog text-primary"></i>
-                        Settings
+                        <i class="fas fa-cog text-primary"></i> Settings
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item">
-                        <i class="fas fa-power-off text-primary"></i>
-                        Logout
-                    </a>
+                    <!-- Logout Functionality for smaller screens -->
+                    <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                        @csrf
+                        <a class="dropdown-item" href="#"
+                            onclick="event.preventDefault(); this.closest('form').submit();">
+                            <i class="fas fa-power-off text-primary"></i> Logout
+                        </a>
+                    </form>
                 </div>
             </li>
         </ul>

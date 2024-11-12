@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CourseController;
@@ -11,6 +12,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RegisteredController;
+use App\Http\Controllers\SearchController;
+
 
 //default route
     Route::get('/', function () {
@@ -77,16 +82,23 @@ use App\Http\Controllers\SettingsController;
     Route::middleware(['auth', 'admin'])->get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/welcome', [HomeController::class, 'index'])->name('welcome');
 
-
-// //    Login and  Register
-//     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-//     Route::post('/register', [RegisteredUserController::class, 'store']);
-//     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-//     Route::post('/login', [AuthenticatedSessionController::class, 'store']);
-
 //setting routes
     Route::middleware('auth')->get('/settings', [SettingsController::class, 'index'])->name('settings.index');
     Route::middleware('auth')->post('/settings', [SettingsController::class, 'update'])->name('settings.update');
+
+//logout
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+//registered students
+    Route::get('/dashboard', [RegisteredController::class, 'index']);
+
+
+//search
+    Route::get('/search', [SearchController::class, 'search'])->name('search');
+    Route::get('/dashboard', [RegisteredController::class, 'index'])->name('dashboard');
+
+
+
 
 
 
